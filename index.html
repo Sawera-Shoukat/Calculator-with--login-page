@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Calculator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+   
+    <div class="container" style="height: 100vh;">
+        <!-- <h1>Calculator</h1> -->
+        <div class="calculator">
+            <form>
+                <div class="display">
+                    <input type="text" name="display" id="inpute" value="" readonly placeholder="0">
+                </div>
+                <div>
+                    <input type="button" value="AC" onclick="clearDisplay()" id="ac">
+                    <input type="button" value="DE" onclick="removeLastCharacter()" id="dc">
+                    <input type="button" value="." onclick="appendCharacter('.')" id="dot">
+                    <input type="button" value="/" onclick="appendCharacter('/')" id="divide">
+                </div>
+                <div>
+                    <input type="button" value="7" onclick="appendCharacter('7')">
+                    <input type="button" value="8" onclick="appendCharacter('8')">
+                    <input type="button" value="9" onclick="appendCharacter('9')">
+                    <input type="button" value="*" onclick="appendCharacter('*')" id="multiply">
+                </div>
+                <div>
+                    <input type="button" value="4" onclick="appendCharacter('4')">
+                    <input type="button" value="5" onclick="appendCharacter('5')">
+                    <input type="button" value="6" onclick="appendCharacter('6')">
+                    <input type="button" value="-" onclick="appendCharacter('-')" id="minus">
+                </div>
+                <div>
+                    <input type="button" value="1" onclick="appendCharacter('1')">
+                    <input type="button" value="2" onclick="appendCharacter('2')">
+                    <input type="button" value="3" onclick="appendCharacter('3')">
+                    <input type="button" value="+" onclick="appendCharacter('+')" id="plus">
+                </div>
+                <div>
+                    <input type="button" value="00" onclick="appendCharacter('00')">
+                    <input type="button" value="0" onclick="appendCharacter('0')">
+                    <input type="button" value="=" id="test" onclick="calculate()">
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        var inpute = document.getElementById('inpute');
+
+        function appendCharacter(char) {
+            inpute.value += char;
+        }
+
+        function removeLastCharacter() {
+            inpute.value = inpute.value.slice(0, -1);
+        }
+
+        function clearDisplay() {
+            inpute.value = '';
+        }
+
+        function calculate() {
+            inpute.value = eval(inpute.value);
+        }
+
+        document.addEventListener("keydown", function (event) {
+            if ((event.key >= '0' && event.key <= '9') || ['+', '-', '*', '/', '%', '.'].includes(event.key)) {
+                appendCharacter(event.key);
+            } else if (event.key === 'Enter') {
+                event.preventDefault();
+                calculate();
+            } else if (event.key === 'Backspace') {
+                removeLastCharacter();
+            } else if (event.key === 'Escape') {665765
+
+                clearDisplay();
+            }
+        });
+    </script>
+</body>
+</html>
